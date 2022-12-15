@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="col py-3">
         <form id="shortURL">
             <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -13,6 +14,7 @@
             <div class="btn btn-primary" id="js-generate-short-url">Generate</button>
         </form>
     </div>
+    
 @endsection
 
 

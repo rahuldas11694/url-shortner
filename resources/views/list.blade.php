@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="col py-3">
 	    <div class="container">
 	        <div class="table-wrapper">
@@ -59,4 +60,5 @@
 	        </div>
 	    </div>
     </div>
+    
 @endsection

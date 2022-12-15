@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
 use App\Models\{ShortUrls, User};
 
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,7 @@ class ShortUrlController extends Controller
     protected $short_url_domain ="http://localhost:8002/";
 
     public function __construct(ShortUrls $shortUrlModel, User $userModel){
-        // parent::__construct();
+        parent::__construct();
         $this->shortUrlModel = $shortUrlModel;
         $this->userModel = $userModel;
     }
@@ -90,7 +91,7 @@ class ShortUrlController extends Controller
      */
     public function show(ShortUrls $shortUrls)
     {
-        $short_urls = $this->shortUrlModel::where('user_id', Auth::id())->get()->toArray(); //find(2);
+        $short_urls = $this->shortUrlModel::where('user_id', Auth::id())->get()->toArray();
 
         return view('list', ['short_urls' => $short_urls, 'short_url_domain' => $this->short_url_domain]);
     }

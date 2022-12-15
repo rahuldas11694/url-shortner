@@ -1,12 +1,11 @@
-@dd("asda");
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container py-5">
+    <div class="row justify-content-center py-10">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('URL Shortning App') }}</div>
+                <div class="card-header">{{ __('Welcome to URL Shortning App') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))

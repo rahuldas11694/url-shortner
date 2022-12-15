@@ -27,3 +27,8 @@ Route::get('/home', [App\Http\Controllers\ShortUrlController::class, 'index'])->
 Route::post('/generate-short-url', [App\Http\Controllers\ShortUrlController::class, 'generate']);
 
 Route::get('/list', [App\Http\Controllers\ShortUrlController::class, 'show']);
+
+Route::get('/plans', [App\Http\Controllers\PlansController::class, 'show']);
+
+Route::post('/plan/upgrade', [App\Http\Controllers\PlansController::class, 'upgrade']);
+
