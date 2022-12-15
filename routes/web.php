@@ -14,21 +14,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if(Auth::check()){ // if logged in the redirect to /home
-        // return redirect()->route('home');
+    if(Auth::check()){ // if logged in then redirect to /home
+        return redirect()->route('home');
     }
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\ShortUrlController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function () {
 
-Route::post('/generate-short-url', [App\Http\Controllers\ShortUrlController::class, 'generate']);
+    Route::get('/home', [App\Http\Controllers\ShortUrlController::class, 'index'])->name('home');
 
-Route::get('/list', [App\Http\Controllers\ShortUrlController::class, 'show']);
+    Route::post('/generate-short-url', [App\Http\Controllers\ShortUrlController::class, 'generate']);
 
-Route::get('/plans', [App\Http\Controllers\PlansController::class, 'show']);
+    Route::get('/list', [App\Http\Controllers\ShortUrlController::class, 'show']);
 
-Route::post('/plan/upgrade', [App\Http\Controllers\PlansController::class, 'upgrade']);
+    Route::get('/plans', [App\Http\Controllers\PlansController::class, 'show']);
+
+    Route::post('/plan/upgrade', [App\Http\Controllers\PlansController::class, 'upgrade']);
+
+    Route::post('/short-url/update', [App\Http\Controllers\ShortUrlController::class, 'update']);
+
+    Route::get('/short-url/edit/{id}', [App\Http\Controllers\ShortUrlController::class, 'edit']);
+
+    Route::post('/short-url/edit/{id}', [App\Http\Controllers\ShortUrlController::class, 'edit']);
+
+});
+
+
+
 

@@ -33,9 +33,13 @@ class PlansController extends Controller
         return view('plan-list', ['all_plans' => $all_plans]);
     }
 
+
+    /**
+     * update the plan if it exists if not exist then create a new one
+    */
     public function upgrade(Request $request){
 
-        $inputs = $request->input();
+        $inputs  = $request->input();
         $plan_id = $inputs['plan_id'] ?? "";
 
         try {
@@ -53,18 +57,18 @@ class PlansController extends Controller
                 return $this->respondWithValidationError($validator->errors());
             }
 
-            $tobe_checked  = ['user_id' => Auth::id()];
+            $tobe_checked     = ['user_id' => Auth::id()];
 
-            $plan_details = $this->plansModel::find($plan_id)->toArray();
+            $plan_details     = $this->plansModel::find($plan_id)->toArray();
             $plan_expiry_term = $plan_details['plan_expiry_term'];
 
             $tobe_inserted['start_date'] = date("Y-m-d");
             $tobe_inserted['plan_id']    = $inputs['plan_id'];
 
             switch ($plan_expiry_term) {
+                
                 case 'M':
                     $tobe_inserted['end_date'] = date("Y-m-d", strtotime ( '+1 month' , strtotime ( $tobe_inserted['start_date'] ) )) ;
-
                     break;
 
                 case 'Y':
@@ -72,6 +76,7 @@ class PlansController extends Controller
                     break;
 
                 default:
+                    $tobe_inserted['end_date'] = date("Y-m-d", strtotime ( '+1 month' , strtotime ( $tobe_inserted['start_date'] ) )) ;
             }
 
             // create or update the plan against the user

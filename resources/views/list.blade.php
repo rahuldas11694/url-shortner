@@ -11,9 +11,9 @@
 	                    <div class="col-sm-6">
 							<h2>Shortened URLs</h2>
 						</div>
-						<div class="col-sm-6">
+						{{-- <div class="col-sm-6">
 							<a href="/home" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Generate New Short URL</span></a>					
-						</div>
+						</div> --}}
 	                </div>
 	            </div>
 
@@ -30,21 +30,24 @@
 	                    <tr>
 	                        <td>{{ $short_url_domain ."". $su['short_url']}}</td>
 	                        <th>{{$su['og_url']}}</th>
-	                        <td class="actions">
+	                        <td class="actions js-short-url-list">
 	                            
-	                            <a href="#editEmployeeModal" class="edit" data-type="edit" data-short-url-id="{{$su['id']}}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+	                            <a href="/short-url/edit/{{$su['id']}}" class="edit" data-action="edit" data-short-url-id="{{$su['id']}}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 
-	                            <a href="#editEmployeeModal" class="disable" data-type="disable" data-short-url-id="{{$su['id']}}"><i class="material-icons" data-toggle="tooltip" title="Disable">&#xE254;</i></a>
+	                            <a href="javascript:void(0)" class="disable" data-action="disable" data-short-url-id="{{$su['id']}}"><i class="material-icons" data-toggle="tooltip" title="Disable">&#xE254;</i></a>
 
-	                            <a href="#deleteEmployeeModal" class="delete" data-type="delete" data-short-url-id="{{$su['id']}}"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+	                            <a href="javascript:void(0)" class="delete" data-action="delete" data-short-url-id="{{$su['id']}}"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 
 	                        </td>
 	                    </tr>
 	                    @endforeach
+	                    @if(empty($short_urls))
+	                    	<tr><td colspan="3">No Data Found</td></tr>
+	                    @endif
 	                </tbody>
 	            </table>
 
-				<div class="clearfix">
+				{{-- <div class="clearfix">
 	                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
 	                <ul class="pagination">
 	                    <li class="page-item disabled"><a href="#">Previous</a></li>
@@ -55,7 +58,7 @@
 	                    <li class="page-item"><a href="#" class="page-link">5</a></li>
 	                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
 	                </ul>
-	            </div>
+	            </div> --}}
 
 	        </div>
 	    </div>

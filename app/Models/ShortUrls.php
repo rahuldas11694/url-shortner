@@ -13,6 +13,8 @@ class ShortUrls extends Model
     protected $table = "short_urls";
     protected $primaryKey = "id"; 
     protected $fillable = ['short_url', 'user_id', 'og_url'];
+    protected $hidden = ['created_at', 'updated_at'];
+
 
 
     public function insertEmp(array $tobeInserted){
